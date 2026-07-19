@@ -107,10 +107,10 @@ custom_url = "https://your-api-endpoint.com/v1/chat/completions"
 ### 示例
 
 ```
-<玩家> 你好
+<玩家> @你好
 [ChatBot] 你好！很高兴见到你！
 
-<玩家> 现在几点了？
+<玩家> @现在几点了？
 [ChatBot] 当前时间我无法提供，不过你可以查看你的电脑或手机上的时间。
 ```
 
@@ -118,8 +118,8 @@ custom_url = "https://your-api-endpoint.com/v1/chat/completions"
 
 ### 智谱GLM
 1. 访问 https://open.bigmodel.cn/ 注册账号
-2. 完成实名认证
-3. 在"API Key管理"页面创建API Key
+2. 在"API Key管理"页面创建API Key
+3. 选模型并复制模型id
 
 ### 火山方舟（豆包）
 1. 访问 https://console.volcengine.com/ark/ 登录火山引擎
