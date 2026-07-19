@@ -111,7 +111,7 @@ custom_url = "https://your-api-endpoint.com/v1/chat/completions"
 [ChatBot] 你好！很高兴见到你！
 
 <玩家> @AI 创造代码怎么开？
-[ChatBot] 在我的世界中，要进入创造模式。你可以使用指令"/gamemode creative "
+[ChatBot] 在我的世界中，要进入创造模式，你可以使用指令"/gamemode creative "
 ```
 
 ## 获取API Key
@@ -119,7 +119,7 @@ custom_url = "https://your-api-endpoint.com/v1/chat/completions"
 ### 智谱GLM
 1. 访问 https://open.bigmodel.cn/ 注册账号
 2. 在"API Key管理"页面创建API Key
-3. 选模型并复制模型id
+3. 模型广场选模型并复制模型id
 
 ### 火山方舟（豆包）
 1. 访问 https://console.volcengine.com/ark/ 登录火山引擎
