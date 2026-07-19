@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: chatbot
+Specification-Vendor: McAiNPC
+Specification-Version: 1
+Implementation-Title: Chat Bot
+Implementation-Version: 1.0.0
+Implementation-Vendor: McAiNPC
+Implementation-Timestamp: 2026-07-19T17:18:22+0800
+

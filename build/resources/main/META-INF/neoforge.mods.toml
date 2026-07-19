@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+issueTrackerURL="https://example.com/issues"
+
+[[mods]]
+modId="chatbot"
+version="1.0.0"
+displayName="Chat Bot"
+authors="McAiNPC"
+description='''
+A server-side chat bot mod that responds to player messages automatically.
+
+Features:
+- Automatically responds to player chat messages
+- Supports various chat commands
+- Friendly AI chat responses
+- Configurable chat behavior
+'''
+
+[[dependencies.chatbot]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.1.235,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.chatbot]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1,1.22)"
+    ordering="NONE"
+    side="BOTH"
