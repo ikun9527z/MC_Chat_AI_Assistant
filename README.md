@@ -107,11 +107,11 @@ custom_url = "https://your-api-endpoint.com/v1/chat/completions"
 ### 示例
 
 ```
-<玩家> @你好
+<玩家> @AI 你好
 [ChatBot] 你好！很高兴见到你！
 
-<玩家> @现在几点了？
-[ChatBot] 当前时间我无法提供，不过你可以查看你的电脑或手机上的时间。
+<玩家> @AI 创造代码怎么开？
+[ChatBot] 在我的世界中，要进入创造模式。你可以使用指令"/gamemode creative "
 ```
 
 ## 获取API Key
