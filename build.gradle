@@ -1,0 +1,100 @@
+plugins {
+    id 'java'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+// Path to the user's existing NeoForge 1.21.1 server libraries.
+// These jars (Mojang-mapped) provide the full compilation classpath without
+// needing moddev-gradle / neoform-runtime (which can't be downloaded offline
+// because maven.neoforged.net is blocked on this network).
+ext {
+    neoforgeLibDir = file('D:/PanKa/Downloads/NBserver/libraries')
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    flatDir {
+        dirs neoforgeLibDir
+    }
+}
+
+dependencies {
+    // The NeoForge-patched MC classes (neoforge-*-server.jar) must come
+    // FIRST in the classpath so they take precedence over the vanilla MC
+    // classes in server-*-srg.jar. For example, Connection.channel() is a
+    // NeoForge addition — the srg jar's Connection doesn't have it.
+    // The srg jar is still needed for vanilla classes NeoForge doesn't patch
+    // (e.g., Component, BlockPos, etc.).
+    compileOnly files("${neoforgeLibDir}/net/neoforged/neoforge/${neo_version}/neoforge-${neo_version}-server.jar")
+    compileOnly fileTree(dir: neoforgeLibDir, include: [
+            '**/*.jar'
+    ], exclude: [
+        // Obfuscated-name jars (would conflict with Mojang-mapped srg.jar)
+        '**/server-*-slim.jar',
+        '**/server-*-unpacked.jar',
+        '**/server-*-extra.jar',
+        // The pure-bundler jar (only contains the bootstrap launcher, no real classes)
+        '**/server-1.21.1.jar',
+        // Native jars (platform-specific, not needed for compile)
+        '**/netty-transport-native-epoll*.jar',
+        '**/netty-transport-native-unix-common*.jar',
+        '**/netty-transport-classes-epoll*.jar',
+        // Caches (not real jars)
+        '**/*.cache'
+    ])
+}
+
+// Process resources: substitute properties in mods.toml and pack.mcmeta
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version       : '1.21.1',
+            minecraft_version_range : '[1.21.1,1.22)',
+            neo_version             : neo_version,
+            neo_version_range       : '[21.1.235,)',
+            loader_version_range    : '[4,)',
+            mod_id                  : mod_id,
+            mod_name                : mod_name,
+            mod_license             : mod_license,
+            mod_version             : mod_version,
+            mod_authors             : mod_authors,
+            mod_description         : mod_description,
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : mod_name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+    // Suppress annotation-processing warnings from MC's null annotations
+    options.compilerArgs += ['-Xlint:none', '-proc:none']
+}
+
+java {
+    withSourcesJar()
+}

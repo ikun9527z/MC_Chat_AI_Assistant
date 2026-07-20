@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - afkbot",
+        "order": 0
+      },
+      "projectName": "afkbot",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\PanKa\\Downloads\\McAiNPC\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\PanKa\\Downloads\\McAiNPC\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dafkbot%%D:\\PanKa\\Downloads\\McAiNPC\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - afkbot",
+        "order": 1
+      },
+      "projectName": "afkbot",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@D:\\PanKa\\Downloads\\McAiNPC\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@D:\\PanKa\\Downloads\\McAiNPC\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dafkbot%%D:\\PanKa\\Downloads\\McAiNPC\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}
